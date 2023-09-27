@@ -7,8 +7,6 @@ ypll 是一個 LLVM 前端處理器，
 負責將 ypl 語言轉換為 LLVM IR，
 接著交由 LLVM 做最佳化並且處理後端生成二進位檔案。
 
-# ypl
-
 ypl - Young's programming language.
 It is desirable to have a more concise syntax without sacrificing performance.
 
@@ -30,8 +28,19 @@ then use LLVM will optimize the IR and generate binary code.
 
 - Strong Type
 - Static Type
+- Compile Language
 
 ## Feature
+
+- [ ] Syntax Design
+    - [ ] function
+    - [ ] varible
+    - [ ] operator
+    - [ ] flow control
+    - [ ] standard library
+    - [ ] standard input
+    - [ ] standard output
+    - [ ] comment
 
 - [ ] Compiler
     - [ ] Minimal Feature
