@@ -25,6 +25,11 @@ int ypll::lexer() {
         // for debug: print the char
         // std::cout << c << " " << buffer << " " << space << std::endl;
         if (in_string) {
+            if (c == '"') {
+                in_string = false;
+                continue;
+            }
+
             buffer += c;
             continue;
         }
@@ -35,10 +40,12 @@ int ypll::lexer() {
             space = 0;
         } else if (c == '(') {
             buffer += c;
+            continue;
         } else if (c == ')') {
             buffer += c;
+            continue;
         } else if (c == '"') {
-            in_string = !in_string;
+            in_string = true;
         } else if (c == '\'') {
             buffer += c;
         } else {
