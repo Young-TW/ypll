@@ -1,7 +1,6 @@
 #include "ypll.h"
 
-int ypll::parser() {
-    
+int ypll::codegen() {
     // undone
     return 0;
 }

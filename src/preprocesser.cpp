@@ -1,5 +1,6 @@
 #include "ypll.h"
 
-std::string ypll::preprocesser() {
+int ypll::preprocesser() {
+    // undone
     return 0;
 }
