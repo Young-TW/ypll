@@ -7,6 +7,10 @@ set(CMAKE_CXX_STANDARD 23)
 
 # set(LLVM_ROOT "/usr/lib/llvm-14")
 
+# if environment is macos and llvm is installed by homebrew
+set(LLVM_ROOT "/opt/homebrew/opt/llvm")
+include_directories(${LLVM_ROOT}/include)
+
 file(RELATIVE_PATH LEVEL ${PROJ_OBJ_ROOT} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 
 include_directories(./include)
@@ -18,4 +22,4 @@ file(GLOB_RECURSE SRC_FILES ./src/*.cpp)
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # llvm_map_components_to_libnames(llvm_libs core support)
-target_link_libraries(${PROJECT_NAME} ${llvm_libs} cxxopts)
+target_link_libraries(${PROJECT_NAME} ${LLVM_LIBRARIES} cxxopts)

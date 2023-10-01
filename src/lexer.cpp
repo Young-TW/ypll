@@ -7,10 +7,10 @@
 
 int ypll::lexer() {
     std::ifstream file(this->target);
-    std::string input = "";
+    this->source = "";
 
     for (std::string line; std::getline(file, line);) {
-        input += ("\n" + line);
+        this->source += ("\n" + line);
     }
 
     // for debug: print the file
@@ -21,7 +21,7 @@ int ypll::lexer() {
     int space = 0;
     bool in_string = false;
 
-    for (char c : input) {
+    for (char c : this->source) {
         // for debug: print the char
         // std::cout << c << " " << buffer << " " << space << std::endl;
         if (in_string) {

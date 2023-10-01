@@ -11,6 +11,18 @@
 #include <unordered_map>
 #include <set>
 
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/Module.h>
+#include <llvm/IR/Function.h>
+#include <llvm/IR/BasicBlock.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/Support/TargetSelect.h>
+#include <llvm/ExecutionEngine/ExecutionEngine.h>
+#include <llvm/ExecutionEngine/GenericValue.h>
+#include <llvm/ExecutionEngine/MCJIT.h>
+#include <llvm/IR/LegacyPassManager.h>
+#include <llvm/Transforms/Scalar.h>
+
 #include "ast.h"
 
 class ypll {
@@ -22,10 +34,10 @@ public:
 
 private:
     std::filesystem::path target;
+    std::string source;
     std::vector<std::string> tokens;
     std::string IR;
 
-    int preprocesser();
     int lexer();
     int parser();
     int IRgen();
