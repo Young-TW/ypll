@@ -34,10 +34,14 @@ int main(int argc, char* argv[]) {
     ypll y;
 
     if (result.unmatched().size() == 0) {
-        std::cout << "ypll: fatal error: no input files" << std::endl;
+        std::cerr << "ypll: fatal error: no input files" << std::endl;
         return 1;
     } else if (result.unmatched().size() == 1) {
         y.set_target(result.unmatched()[0]);
+    } else if (result.unmatched().size() > 1) {
+        std::cerr << "ypll: fatal error: too many input files" << std::endl;
+        std::cerr << "ypll: note: only one input file is allowed" << std::endl;
+        return 1;
     }
 
     y.compile();

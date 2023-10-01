@@ -1,19 +1,24 @@
+#include <vector>
+
 #include "ypll.h"
 
 int ypll::parser() {
+    std::vector<std::string> retraction = {};
     for (std::string token : this->tokens) {
-        if (token == "retraction1") {
-            continue;
-        } else if (this->keywords.find(token) != this->keywords.end()) {
+        if (token.starts_with("keyword_")) {
 
-        } else if (this->operators.find(token) != this->operators.end()) {
-            // undone
-        } else if (this->delimiters.find(token) != this->delimiters.end()) {
-            // undone
-        } else {
-            // undone
+        } else if (token.starts_with("operator_")) {
+
+        } else if (token.starts_with("delimiter_")) {
+
+        } else if (token.starts_with("builtin_functions_")) {
+
         }
     }
+
+
+
+
     // undone
     return 0;
 }
