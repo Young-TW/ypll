@@ -7,8 +7,18 @@
 
 #include "ypll.h"
 
+std::ifstream fin;
+std::ofstream fout;
+
 ypll::ypll() {
 
+}
+
+ypll::~ypll() {
+    std::cout << std::filesystem::current_path() << std::endl;
+    fout.open("./llvm-ir/output.ll");
+    fout << this->IR;
+    fout.close();
 }
 
 int ypll::set_target(std::filesystem::path target) {

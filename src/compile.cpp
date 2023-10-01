@@ -4,6 +4,6 @@ int ypll::compile() {
     lexer();
     parser();
     IRgen();
-    codegen();
+    // codegen();
     return 0;
 }

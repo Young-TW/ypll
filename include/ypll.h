@@ -34,6 +34,7 @@
 class ypll {
 public:
     ypll();
+    ~ypll();
     int set_target(std::filesystem::path target);
     int compile();
     // ~ypll() = default;
