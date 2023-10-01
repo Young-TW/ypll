@@ -2,6 +2,7 @@
 
 int ypll::codegen() {
     using namespace llvm;
+
     // Initialize LLVM
     InitializeAllTargets();
     InitializeAllTargetMCs();
@@ -11,16 +12,23 @@ int ypll::codegen() {
     LLVMInitializeNativeAsmPrinter();
     LLVMInitializeNativeAsmParser();
 
-    // Create an LLVM module
+    // Create an LLVM module from IR string
     LLVMContext Context;
-    std::unique_ptr<Module> module = std::make_unique<Module>("my_module", Context);
+    SMDiagnostic Err;
+    std::unique_ptr<Module> module = parseIR(MemoryBufferRef(this->IR, "IR"), Err, Context);
 
-    // Create a function
-    FunctionType *funcType = FunctionType::get(Type::getInt32Ty(Context), false);
-    Function *mainFunc = Function::Create(funcType, Function::ExternalLinkage, "main", module.get());
+    if (!module) {
+        // Handle parsing error
+        errs() << "Error parsing LLVM IR: " << Err.getMessage() << "\n";
+        return 1; // Return an error code
+    }
 
-    // Create a basic block
-    BasicBlock *entryBlock = BasicBlock::Create(Context, "entry", mainFunc);
+    // Add a main function if needed
+    FunctionType* funcType = FunctionType::get(Type::getInt32Ty(Context), false);
+    Function* mainFunc = Function::Create(funcType, Function::ExternalLinkage, "main", module.get());
+
+    // Add a basic block if needed
+    BasicBlock* entryBlock = BasicBlock::Create(Context, "entry", mainFunc);
 
     // Your LLVM code here to add instructions to the basic block
 
@@ -36,24 +44,23 @@ int ypll::codegen() {
     // passManager.run(*mainFunc);
 
     // Set up a JIT engine
-    // 創建 TargetMachine 指標
     llvm::TargetMachine* targetMachine = EngineBuilder().selectTarget();
 
-    // 將 TargetMachine 指標轉換為 std::unique_ptr<TargetMachine>
+    // Convert the TargetMachine pointer to std::unique_ptr<TargetMachine>
     std::unique_ptr<llvm::TargetMachine> uniqueTargetMachine(targetMachine);
 
-    // 創建 ExecutionEngine 使用 EngineBuilder
+    // Create an ExecutionEngine using EngineBuilder
     EngineBuilder builder(std::move(module));
     builder.setEngineKind(EngineKind::JIT);
 
-    ExecutionEngine* executionEngine = builder.create();
+    // Generate the native code with default code model
+    builder.setCodeModel(CodeModel::Small);
+    builder.setOptLevel(CodeGenOpt::Default);
+    std::unique_ptr<ExecutionEngine> executionEngine(builder.create());
 
-    // JIT the module
-    // GenericValue result = executionEngine->runFunction(mainFunc, {});
+    // Get a pointer to the main function
+    void* mainPtr = executionEngine->getPointerToFunction(mainFunc);
 
-    // Your code to use the result
-    // std::cout << result.IntVal << std::endl;
-
-    // undone
+    // Return success (or an error code if needed)
     return 0;
 }
