@@ -14,6 +14,8 @@ if("$ENV{ENVIRONMENT}" STREQUAL "macos")
     set(LLVM_ROOT "/opt/homebrew/opt/llvm")
 elseif("$ENV{ENVIRONMENT}" STREQUAL "fedora")
     set(LLVM_ROOT "/usr/lib/llvm")
+else()
+    message(FATAL_ERROR "Unknown environment: $ENV{ENVIRONMENT}")
 endif()
 
 include_directories(${LLVM_ROOT}/include)
