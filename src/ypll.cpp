@@ -11,7 +11,7 @@ std::ifstream fin;
 std::ofstream fout;
 
 ypll::ypll() {
-
+    
 }
 
 ypll::~ypll() {

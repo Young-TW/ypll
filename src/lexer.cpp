@@ -6,6 +6,16 @@
 #include "ypll.h"
 
 int ypll::lexer() {
+    enum Token {
+        keyword = 0,
+        operator_ = 1,
+        delimiter = 2,
+        identifier = 3,
+        literal = 4,
+        comment = 5,
+        error = 6,
+    };
+
     std::ifstream file(this->target);
     this->source = "";
 
@@ -13,8 +23,10 @@ int ypll::lexer() {
         this->source += ("\n" + line);
     }
 
+    std::string file_contents((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
+
     // for debug: print the file
-    // std::cout << input << std::endl;
+    std::cout << source << std::endl;
 
     std::vector<std::string> tokens = {};
     std::string buffer = "";
