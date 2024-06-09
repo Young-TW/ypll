@@ -1,20 +1,29 @@
 cmake_minimum_required(VERSION 3.20.0)
+
+set(CMAKE_C_COMPILER /usr/bin/clang)
+set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+
 project(ypll VERSION 0.0.0)
 
 set(CMAKE_CXX_STANDARD 23)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
-set(CMAKE_C_COMPILER /usr/bin/clang)
-set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 
-if("$ENV{ENVIRONMENT}" STREQUAL "macos")
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    message(STATUS "Configuring for Linux")
+    # Linux specific commands
+    set(LLVM_ROOT "/usr/lib/llvm")
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    message(STATUS "Configuring for Windows")
+    # Windows specific commands
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    message(STATUS "Configuring for macOS")
+    # macOS specific commands
     set(LLVM_ROOT "/opt/homebrew/opt/llvm")
     # set(DDEFAULT_SYSROOT "/path/to/MacOSX11.1.sdk")
-elseif("$ENV{ENVIRONMENT}" STREQUAL "fedora")
-    set(LLVM_ROOT "/usr/lib/llvm")
 else()
-    message(FATAL_ERROR "Unknown environment: $ENV{ENVIRONMENT}")
+    message(FATAL_ERROR "Unsupported platform")
 endif()
 
 include_directories(${LLVM_ROOT}/include)
