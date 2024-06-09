@@ -1,4 +1,11 @@
 /build
-*.DS_Store
+/dist
+
 /.vscode
 /.idea
+/.cache
+
+*.DS_Store
+
+*.out
+*.exe
