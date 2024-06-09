@@ -1,33 +1,32 @@
 #ifndef YPLL_H
 #define YPLL_H
 
-#include <string>
-#include <vector>
-#include <filesystem>
-#include <algorithm>
-#include <iostream>
-#include <unordered_set>
-#include <fstream>
-#include <unordered_map>
-#include <set>
-
-#include <llvm/IR/LLVMContext.h>
-#include <llvm/IR/Module.h>
-#include <llvm/IR/Function.h>
-#include <llvm/IR/BasicBlock.h>
-#include <llvm/IR/IRBuilder.h>
-#include <llvm/Support/TargetSelect.h>
-#include <llvm/TargetParser/Host.h>
-#include <llvm/Target/TargetMachine.h>
-#include <llvm/MC/MCStreamer.h>
-#include <llvm/IRReader/IRReader.h>
-#include <llvm/Support/SourceMgr.h>
-#include <llvm/Support/TargetSelect.h>
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/GenericValue.h>
 #include <llvm/ExecutionEngine/MCJIT.h>
+#include <llvm/IR/BasicBlock.h>
+#include <llvm/IR/Function.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/LegacyPassManager.h>
+#include <llvm/IR/Module.h>
+#include <llvm/IRReader/IRReader.h>
+#include <llvm/MC/MCStreamer.h>
+#include <llvm/Support/SourceMgr.h>
+#include <llvm/Support/TargetSelect.h>
+#include <llvm/Target/TargetMachine.h>
+#include <llvm/TargetParser/Host.h>
 #include <llvm/Transforms/Scalar.h>
+
+#include <algorithm>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <set>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 #include "ast.h"
 
@@ -51,20 +50,13 @@ private:
     int codegen();
 
     const std::unordered_map<std::string, std::string> keywords = {
-        {"i32", "int_32"},
-        {"i64", "int_64"},
-        {"f32", "float_32"},
-        {"f64", "float_64"},
-        {"bool", "boolean"},
-        {"main", "entry_point"},
-        {"if", "if_control"},
-        {"else", "else_control"},
-        {"while", "while_loop"},
-        {"for", "for_loop"},
-        {"return", "return"},
-        {"true", "boolean_true"},
-        {"false", "boolean_false"},
-        {"null", "null_value"},
+        {"i32", "int_32"},          {"i64", "int_64"},
+        {"f32", "float_32"},        {"f64", "float_64"},
+        {"bool", "boolean"},        {"main", "entry_point"},
+        {"if", "if_control"},       {"else", "else_control"},
+        {"while", "while_loop"},    {"for", "for_loop"},
+        {"return", "return"},       {"true", "boolean_true"},
+        {"false", "boolean_false"}, {"null", "null_value"},
         {"void", "void_value"},
     };
 
@@ -108,6 +100,5 @@ private:
 
     friend class AST;
 };
-
 
 #endif

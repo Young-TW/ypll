@@ -15,17 +15,20 @@ int ypll::codegen() {
     // Create an LLVM module from IR string
     LLVMContext Context;
     SMDiagnostic Err;
-    std::unique_ptr<Module> module = parseIR(MemoryBufferRef(this->IR, "IR"), Err, Context);
+    std::unique_ptr<Module> module =
+        parseIR(MemoryBufferRef(this->IR, "IR"), Err, Context);
 
     if (!module) {
         // Handle parsing error
         errs() << "Error parsing LLVM IR: " << Err.getMessage() << "\n";
-        return 1; // Return an error code
+        return 1;  // Return an error code
     }
 
     // Add a main function if needed
-    FunctionType* funcType = FunctionType::get(Type::getInt32Ty(Context), false);
-    Function* mainFunc = Function::Create(funcType, Function::ExternalLinkage, "main", module.get());
+    FunctionType* funcType =
+        FunctionType::get(Type::getInt32Ty(Context), false);
+    Function* mainFunc = Function::Create(funcType, Function::ExternalLinkage,
+                                          "main", module.get());
 
     // Add a basic block if needed
     BasicBlock* entryBlock = BasicBlock::Create(Context, "entry", mainFunc);

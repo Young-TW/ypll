@@ -1,7 +1,7 @@
 #include <fstream>
-#include <vector>
-#include <string>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "ypll.h"
 
@@ -23,7 +23,8 @@ int ypll::lexer() {
         this->source += ("\n" + line);
     }
 
-    std::string file_contents((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
+    std::string file_contents((std::istreambuf_iterator<char>(file)),
+                              (std::istreambuf_iterator<char>()));
 
     // for debug: print the file
     std::cout << source << std::endl;
@@ -95,7 +96,7 @@ int ypll::lexer() {
     // for debug: print the tokens
     // for (std::string token : this->tokens)
     std::string token;
-    for (int i=0;i<this->tokens.size();i++) {
+    for (int i = 0; i < this->tokens.size(); i++) {
         token = this->tokens[i];
         auto token_keywords = this->keywords.find(token);
         if (token_keywords != keywords.cend()) {

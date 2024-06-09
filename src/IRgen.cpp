@@ -4,13 +4,16 @@ int ypll::IRgen() {
     using namespace llvm;
     // 創建 LLVM 上下文（Context）和模塊（Module）
     LLVMContext Context;
-    std::unique_ptr<Module> module = std::make_unique<Module>("my_module", Context);
+    std::unique_ptr<Module> module =
+        std::make_unique<Module>("my_module", Context);
 
     // 創建函數類型，這個例子中是無參數的整數函數
-    FunctionType* funcType = FunctionType::get(Type::getInt32Ty(Context), false);
+    FunctionType* funcType =
+        FunctionType::get(Type::getInt32Ty(Context), false);
 
     // 在模塊中創建一個函數
-    Function* myFunc = Function::Create(funcType, Function::ExternalLinkage, "my_function", module.get());
+    Function* myFunc = Function::Create(funcType, Function::ExternalLinkage,
+                                        "my_function", module.get());
 
     // 創建基本區塊
     BasicBlock* entryBlock = BasicBlock::Create(Context, "entry", myFunc);

@@ -1,18 +1,15 @@
+#include "ypll.h"
+
+#include <cxxopts.hpp>
+#include <filesystem>
 #include <iostream>
 #include <string>
 #include <unordered_set>
-#include <filesystem>
-
-#include <cxxopts.hpp>
-
-#include "ypll.h"
 
 std::ifstream fin;
 std::ofstream fout;
 
-ypll::ypll() {
-    
-}
+ypll::ypll() {}
 
 ypll::~ypll() {
     std::cout << std::filesystem::current_path() << std::endl;
@@ -27,12 +24,11 @@ int ypll::set_target(std::filesystem::path target) {
 }
 
 int main(int argc, char* argv[]) {
-    cxxopts::Options options("ypll", "A compiler for Young's Programming Language");
+    cxxopts::Options options("ypll",
+                             "A compiler for Young's Programming Language");
     options.allow_unrecognised_options();
 
-    options.add_options()
-        ("h,help", "print help page", cxxopts::value<bool>())
-        ;
+    options.add_options()("h,help", "print help page", cxxopts::value<bool>());
 
     cxxopts::ParseResult result = options.parse(argc, argv);
 
