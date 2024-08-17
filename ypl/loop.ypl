@@ -1,0 +1,12 @@
+// only have while loop
+
+i32 main():
+    i32 i = 0
+    while i < 5:
+        println("i: {}", i)
+        i = i + 1
+
+    while i32 j = 0..5:
+        println("j: {}", j)
+
+    return 0

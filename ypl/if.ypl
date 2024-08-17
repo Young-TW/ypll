@@ -1,0 +1,12 @@
+i32 main():
+    if true:
+        println("True")
+    else:
+        println("False")
+
+    if false:
+        println("False")
+    else:
+        println("True")
+
+    return 0
