@@ -33,11 +33,11 @@ llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 file(RELATIVE_PATH LEVEL ${PROJ_OBJ_ROOT} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 
-include_directories(./include)
+include_directories(src/cpp/include)
 
 add_subdirectory(cxxopts)
 
-file(GLOB_RECURSE SRC_FILES ./src/*.cpp)
+file(GLOB_RECURSE SRC_FILES ./src/cpp/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 

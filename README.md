@@ -23,6 +23,11 @@ then use LLVM will optimize the IR and generate binary code.
 5. Do not use semicolons
 6. Fast execute time
 7. Less memory usage
+8. Memeory safety
+9. No hidden control flow
+10. No hidden type conversion
+11. No hidden memory allocation
+12. No hidden memory deallocation
 
 ## property
 
