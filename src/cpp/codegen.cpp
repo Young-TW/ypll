@@ -1,3 +1,4 @@
+#include <llvm/Support/CodeGen.h>
 #include "ypll.h"
 
 int ypll::codegen() {
@@ -58,7 +59,7 @@ int ypll::codegen() {
 
     // Generate the native code with default code model
     builder.setCodeModel(CodeModel::Small);
-    builder.setOptLevel(CodeGenOpt::Default);
+    builder.setOptLevel(CodeGenOptLevel::Default);
     std::unique_ptr<ExecutionEngine> executionEngine(builder.create());
 
     // Get a pointer to the main function
