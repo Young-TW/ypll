@@ -1,0 +1,11 @@
+import std::swap
+
+fn bubble_sort(arr: &mut [i32]):
+    bool mut swapped = true
+    while swapped:
+        swapped = false
+        for i in 1..arr.len():
+            if arr[i - 1] > arr[i]
+                arr.swap(i - 1, i)
+                swapped = true
+        n -= 1

@@ -1,6 +1,6 @@
 // only have while loop
 
-i32 main():
+fn main():
     i32 i = 0
     while i < 5:
         println("i: {}", i)
