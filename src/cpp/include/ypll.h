@@ -18,14 +18,9 @@
 #include <llvm/TargetParser/Host.h>
 #include <llvm/Transforms/Scalar.h>
 
-#include <algorithm>
 #include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <set>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "ast.h"
