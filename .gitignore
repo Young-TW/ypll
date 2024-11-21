@@ -9,6 +9,7 @@
 
 *.out
 *.exe
+*.o
 
 # Added by cargo
 
