@@ -1,11 +1,13 @@
 #[derive(Debug, PartialEq)]
-enum Token {
+pub enum Token {
     Let,
     Identifier(String),
     Number(i64),
-    Equal,
-    Plus,
+    Operator(String),
     Semicolon,
+    OpeningParenthesis,
+    ClosingParenthesis,
+    Comma,
     Eof,
 }
 
